@@ -9,34 +9,38 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  // timeout: 60 * 1000, // Timeout
+  baseURL: 'http://localhost:8080',
+  timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
 
-_axios.interceptors.request.use(
-  function(config) {
-    // Do something before request is sent
-    return config;
-  },
-  function(error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+_axios.interceptors.request.use(config =>{
+  config.headers['Context-Type'] = 'application/json;charset=utf-8';
+  return config
+},error => {
+  return Promise.reject(error);
+});
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-  function(response) {
-    // Do something with response data
-    return response;
-  },
-  function(error) {
-    // Do something with response error
-    return Promise.reject(error);
-  }
+    response =>{
+      let res = response.data;
+      // 如果是返回的文件
+      if (response.config.responseType == 'blob'){
+        return res
+      }
+      // 兼容服务器返回的字符串数据
+      if(typeof res == 'string'){
+        res = res ? JSON.parse(res) : res
+      }
+      return res;
+    },
+    error =>{
+      console.log('error' + error);
+      return Promise.reject(error)
+    }
 );
 
 Plugin.install = function(Vue, options) {

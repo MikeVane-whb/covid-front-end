@@ -148,7 +148,7 @@ export default {
                             this.$alert("注册用户名或密码不能为空")
                             this.loading=false;
            }else if(this.userRegister.password==this.userRegister.repassword){
-        axios.post('http://localhost:8080/userlogin/register',this.userRegister).then((resp)=>{
+        axios.post('/user/register.do',this.userRegister).then((resp)=>{
           console.log(resp)
           this.loading=true;
                 if(resp.data=='success'){
@@ -177,37 +177,28 @@ export default {
     handleLogin() {
       this.$refs["userLoginForm"].validate((valid) => {
         if (valid) {
-
-          alert('submit!');
+          axios.post('/user/login.do',this.userLogin).then((resp)=>{
+            console.log(resp)
+            if(resp.code === '200'){
+              this.$message({
+                message: '登录成功',
+                type: 'success',
+                center: true
+              });
+              this.$router.push('/index')
+            }
+            else {
+              this.$message.error({
+                message: resp.msg,
+                center: true
+              });
+            }
+          })
         } else {
           console.log('error submit!!');
           return false;
         }
       });
-        axios.post('http://localhost:8080/userlogin/userRegister',this.userLogin).then((resp)=>{
-          console.log(resp)
-          this.loading=true;
-           if(this.userLogin.username==""||this.userLogin.password=="") {
-                            this.$alert("用户名或密码不能为空")
-                            this.loading=false;
-           }
-            else {
-                if(resp.data=='success') {
-                  this.loading = false;
-                  this.$message({
-                    showClose: true,
-                    message: '登录成功',
-                    type: 'success'
-                  });
-                  this.$router.push('/index')
-                }
-                else {
-                  this.loading=false;
-                  this.$alert("用户名或密码错误")
-                }
-              }
-          
-        })
       }
     }
   };
