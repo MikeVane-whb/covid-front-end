@@ -27,7 +27,7 @@
       ></el-button>
     </el-input>
 
-    <el-table :data="tableData" border style="width: 100%">
+    <el-table :data="tableData" style="width: 100%">
       <el-table-column fixed prop="name" label="姓名" width="100">
       </el-table-column>
       <el-table-column prop="id" label="编号" width="50"> </el-table-column>

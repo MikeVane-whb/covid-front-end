@@ -14,9 +14,9 @@ let config = {
   // withCredentials: true, // Check cross-site Access-Control
 };
 
-const _axios = axios.create(config);
+const request = axios.create(config);
 
-_axios.interceptors.request.use(config =>{
+request.interceptors.request.use(config =>{
   config.headers['Context-Type'] = 'application/json;charset=utf-8';
   return config
 },error => {
@@ -24,7 +24,7 @@ _axios.interceptors.request.use(config =>{
 });
 
 // Add a response interceptor
-_axios.interceptors.response.use(
+request.interceptors.response.use(
     response =>{
       let res = response.data;
       // 如果是返回的文件
@@ -42,24 +42,4 @@ _axios.interceptors.response.use(
       return Promise.reject(error)
     }
 );
-
-Plugin.install = function(Vue, options) {
-  Vue.axios = _axios;
-  window.axios = _axios;
-  Object.defineProperties(Vue.prototype, {
-    axios: {
-      get() {
-        return _axios;
-      }
-    },
-    $axios: {
-      get() {
-        return _axios;
-      }
-    },
-  });
-};
-
-Vue.use(Plugin)
-
-export default Plugin;
+export default request;
