@@ -6,10 +6,12 @@ import './plugins/element.js'
 import * as echarts from 'echarts'
 import './assets/global.css'
 import request from "@/plugins/axios"
+import globals from "@/utils/globals";
 
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 Vue.prototype.request = request
+Vue.use(globals)
 
 new Vue({
   router,
