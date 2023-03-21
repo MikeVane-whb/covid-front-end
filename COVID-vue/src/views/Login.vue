@@ -19,9 +19,9 @@
               autocomplete="on"
               placeholder="请输入用户名"
           >
-            <span slot="prefix">
-              <svg-icon icon-class="userRegister" class="color-main"></svg-icon>
-            </span>
+<!--            <span slot="prefix">-->
+<!--              <svg-icon icon-class="userRegister" class="color-main"></svg-icon>-->
+<!--            </span>-->
           </el-input>
         </el-form-item>
         <el-form-item prop="password" class="login-password">
@@ -37,9 +37,9 @@
               placeholder="请输入密码"
               show-password
           >
-            <span slot="prefix">
-              <svg-icon icon-class="password" class="color-main"></svg-icon>
-            </span>
+<!--            <span slot="prefix">-->
+<!--              <svg-icon icon-class="password" class="color-main"></svg-icon>-->
+<!--            </span>-->
           </el-input>
         </el-form-item>
         <div style="margin: 10px 0; text-align: left">
@@ -207,16 +207,24 @@ export default {
       this.$refs["userForm"].validate((valid) => {
         if (valid) {
           request.post('/user/login.do',this.user).then((res)=>{
-            console.log(res)
+            // console.log(res)
             // console.log(res.objectMap)
             if(res.code === this.getStatusCode('SUCCESS')){
-              localStorage.setItem("user",JSON.stringify(res.data)) //存储用户信息到浏览器
+              let data = res.data;
+              delete data.password
+              let user = JSON.stringify(data);
+              localStorage.setItem("user",user) //存储用户信息到浏览器
               this.$message({
                 message: '登录成功',
                 type: 'success',
                 center: true
               });
-              this.$router.push('/teacher/manage')
+              if (this.user.identity === '学生'){
+                this.$router.push('/student')
+              }
+              if (this.user.identity === '老师'){
+                this.$router.push('/teacher/manage')
+              }
             }
             else {
               this.$message.error({
