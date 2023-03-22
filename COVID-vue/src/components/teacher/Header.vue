@@ -8,7 +8,7 @@
       <span>{{user.username}}</span><i class="el-icon-arrow-down" style="margin-left: 5px"></i>
       <el-dropdown-menu slot="dropdown" style="text-align: center" >
         <el-dropdown-item style="width: 100px">
-          <router-link class="link-to-info" to="/teacher/info">个人信息</router-link>
+          <router-link class="link-to-info" to="/teacher/teacherInfo">个人信息</router-link>
         </el-dropdown-item>
         <el-dropdown-item >
           <span class="link-to-exit" style="text-decoration: none" @click="logout">退出</span>

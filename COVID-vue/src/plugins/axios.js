@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import axios from "axios";
+import router from "@/router";
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -33,8 +34,13 @@ request.interceptors.request.use(config =>{
 request.interceptors.response.use(
     response =>{
       let res = response.data;
-      // console.log(response.headers)
-      // 如果是返回的文件
+      //未登录检测
+        if(res.code === "4001" || res.code === "4002"){
+            Vue.prototype.$message.error(res.msg)
+            router.push("/")
+            return
+        }
+        // 如果是返回的文件
       if (response.config.responseType == 'blob'){
         return res
       }

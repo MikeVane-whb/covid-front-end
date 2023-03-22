@@ -6,13 +6,13 @@
              class="clock-form">
       <h2 style="color: #404c56;text-align: center;margin-top: 20px">学   生   打   卡</h2>
       <el-form-item label="用户名"  prop="studentName" class="form-item-margin">
-        <el-input class="disabled-input" :disabled="true" v-model="clockForm.studentName"></el-input>
+        <el-input :disabled="true" v-model="clockForm.studentName"></el-input>
       </el-form-item>
       <el-form-item label="学号" prop="stuNumber" class="form-item-margin">
         <el-input :disabled="true" v-model="clockForm.stuNumber"></el-input>
       </el-form-item>
       <el-form-item label="地址" prop="address" class="form-item-margin">
-        <el-input></el-input>
+        <el-input v-model="clockForm.address"></el-input>
       </el-form-item>
       <el-form-item label="身体状态" prop="status" class="form-item-margin ">
         <el-select v-model="clockForm.status" placeholder="请选择目前身体状态" class="form-item-width">
@@ -41,11 +41,12 @@
 <script>
 export default {
   name: "ClockSituation",
+  created() {
+    this.loadStudent()
+  },
   data(){
     return{
       clockForm:{
-        id:'',
-        studentId: '',
         stuNumber: '',
         studentName: '',
         address: '',
@@ -56,6 +57,14 @@ export default {
         
       }
     }
+  },
+  methods:{
+    loadStudent(){
+      let item = localStorage.getItem('student');
+      let student = JSON.parse(item);
+      this.clockForm.stuNumber = student.stuNumber
+      this.clockForm.studentName = student.username
+    }
   }
 }
 </script>
@@ -64,11 +73,11 @@ export default {
 
 .clock-form{
   background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-  /*background: linear-gradient(to bottom, #f2f2f2, #dcdcdc);*/
 }
 
 .el-input.is-disabled /deep/ .el-input__inner{
-  background-color: #dbddde;
+  background-color: #cccccc;
+  color: rgba(14, 28, 40, 0.8);
 }
 
 .center-top {

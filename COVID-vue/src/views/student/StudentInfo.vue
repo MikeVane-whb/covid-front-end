@@ -71,6 +71,7 @@ export default {
           user = JSON.parse(user)
           user.username = res.data.username
           localStorage.setItem('user',JSON.stringify(user))
+          localStorage.setItem('student',JSON.stringify(res.data))
         }
       })
     },

@@ -14,7 +14,7 @@ const routes = [
     component:() => import('../views/teacher/Teacher.vue'),
     redirect: "/teacher/manage",
     children: [
-      {path: "info", name: "Info", component:() => import('../views/teacher/TeacherInfo.vue')},
+      {path: "teacherInfo", name: "TeacherInfo", component:() => import('../views/teacher/TeacherInfo.vue')},
       {path: "manage", name: "Manage", component:() => import('../views/teacher/ManageStudent.vue')},
       {path: "clockSituation", name: "ClockSituation", component:() => import('../views/teacher/ClockSituation.vue')},
       {path: "studentStatus", name: "StudentStatus", component:() => import('../views/teacher/StudentStatus.vue')},
@@ -27,9 +27,9 @@ const routes = [
     name: '学生模块',
     meta: false,
     component:() => import('../views/student/Student.vue'),
-    redirect: '/student/info',
+    redirect: '/student/studentInfo',
     children: [
-      {path: 'info', name: 'Info', component:() => import('../views/student/StudentInfo')},
+      {path: 'studentInfo', name: 'StudentInfo', component:() => import('../views/student/StudentInfo')},
       {path: 'clock', name: 'Clock', component:() => import('../views/student/Clock')}
     ]
   }

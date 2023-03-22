@@ -87,7 +87,6 @@
 
 <script>
 import request from "@/plugins/axios";
-import router from "@/router";
 
 const CurrentURL = "/teacher/manage"
 
@@ -126,11 +125,6 @@ export default {
           studentName: this.studentName
         }
       }).then(res => {
-        if(res.code === "1008" || res.code === "1009"){
-          this.$message.error(res.msg);
-          router.push("/login")
-          return
-        }
         if (res.code === this.getStatusCode('SUCCESS')){
           this.tableData = res.data.records
           this.total = res.data.total
