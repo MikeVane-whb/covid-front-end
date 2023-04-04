@@ -30,7 +30,8 @@ const routes = [
     redirect: '/student/studentInfo',
     children: [
       {path: 'studentInfo', name: 'StudentInfo', component:() => import('../views/student/StudentInfo')},
-      {path: 'clock', name: 'Clock', component:() => import('../views/student/Clock')}
+      {path: 'clock', name: 'Clock', component:() => import('../views/student/Clock')},
+      {path: 'grade', name: 'Grade', component:() => import('../views/student/StudentGrade')}
     ]
   }
 ]

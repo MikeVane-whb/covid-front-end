@@ -17,7 +17,7 @@
         <span slot="title">疫情打卡</span>
       </template>
     </el-menu-item>
-    <el-menu-item index="/student/grades">
+    <el-menu-item index="/student/grade">
       <template slot="title"><i class="el-icon-s-custom"></i>
         <span slot="title">班级情况</span>
       </template>

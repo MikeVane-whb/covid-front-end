@@ -9,6 +9,7 @@ const httpGlobalCode = [
     { status: 'INSERT_ERROR', code: '1007' },// 插入失败
     { status: 'NULL_TOKEN', code: '4001' },// 无 token 错误
     { status: 'VALID_ERROR_TOKEN', code: '4002' },// token 验证失败
+    { status: 'NOT_CHECKED', code: '4003' },// 已打卡
     { status: 'SERVER_ERROR', code: '500' },// 服务器错误状态码
 ];
 

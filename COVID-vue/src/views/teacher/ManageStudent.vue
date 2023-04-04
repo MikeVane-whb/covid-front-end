@@ -6,19 +6,19 @@
     </div>
 
     <div style="margin-bottom: 10px">
-      <el-button type="primary" @click="handleInsert()">新增学生 <i class="el-icon-circle-plus-outline"></i></el-button>
-      <el-button type="danger">批量删除 <i class="el-icon-remove-outline"></i></el-button>
+      <el-button type="primary" @click="handleInsert">新增学生 <i class="el-icon-circle-plus-outline"></i></el-button>
+      <el-button type="danger" @click="handleBatchDelete">批量删除 <i class="el-icon-remove-outline"></i></el-button>
     </div>
 
-    <el-table :data="tableData" border>
+    <el-table :data="tableData" border
+              @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55"/>
       <el-table-column prop="id" label="ID" width="80"/>
       <el-table-column prop="username" label="姓名" width="120"/>
       <el-table-column prop="stuNumber" label="学号" width="120"/>
       <el-table-column prop="sex" label="性别" width="60" align="center"/>
       <el-table-column prop="gradeClass" label="班级" width="100" align="center"/>
       <el-table-column prop="address" label="地址" width="250" align="center"/>
-<!--      <el-table-column prop="status" label="身体状态" width="150" align="center"/>-->
-<!--      <el-table-column prop="contactCase" label="是否接触过疑似病例" width="150" align="center"/>-->
       <el-table-column label="操作" align="center">
         <template v-slot="scope">
           <el-button type="success" @click="handleUpdate(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>
@@ -113,6 +113,7 @@ export default {
       student:{
         studentId: ''
       },
+      multipleSelection: [],
     }
   },
   methods:{
@@ -252,6 +253,40 @@ export default {
         }
       })
       this.dialogFormVisible = false
+    },
+
+    // 多选
+    handleSelectionChange(val){
+      this.multipleSelection = val
+    },
+
+    // 批量删除
+    handleBatchDelete(){
+      let ids = this.multipleSelection.map(v => v.id)
+      this.$confirm('是否要批量删除学生', '确认信息', {
+        distinguishCancelAndClose: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        if (ids.length == 0){
+          this.$message.error('请选择删除的学生对象')
+        }
+        request.post(CurrentURL + '/batchDelRelation.do',ids).then(res => {
+          if (res.code === this.getStatusCode('SUCCESS')){
+            this.$message.success('删除成功')
+            this.load()
+            this.loadStudent()
+          }
+          else{
+            this.$message.error(res.msg)
+          }
+        })
+      }).catch(action => {
+        this.$message({
+          type: 'info',
+          message: '取消操作'
+        })
+      })
     }
   },
 }
