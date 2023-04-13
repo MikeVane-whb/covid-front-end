@@ -76,7 +76,6 @@ export default {
     myChart.setOption(this.studentChart)
   },
   created() {
-    // 基于准备好的dom，初始化echarts实例
     this.load()
   },
   data(){

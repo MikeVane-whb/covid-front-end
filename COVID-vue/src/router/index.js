@@ -27,10 +27,13 @@ const routes = [
     name: '学生模块',
     meta: false,
     component:() => import('../views/student/Student.vue'),
-    redirect: '/student/studentInfo',
+    redirect: '/student/homePage',
     children: [
+      {path: 'homePage', name: 'HomePage', component:() => import('../views/student/HomePage')},
       {path: 'studentInfo', name: 'StudentInfo', component:() => import('../views/student/StudentInfo')},
+      {path: 'modifyPassword', name: 'ModifyPassword', component:() => import('../views/student/ModifyPassword')},
       {path: 'clock', name: 'Clock', component:() => import('../views/student/Clock')},
+      {path: 'leave', name: 'Leave', component:() => import('../views/student/Leave')},
       {path: 'grade', name: 'Grade', component:() => import('../views/student/StudentGrade')}
     ]
   }

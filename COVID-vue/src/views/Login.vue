@@ -63,7 +63,7 @@
       </el-form>
     </div>
 
-<el-dialog title="用户注册" :visible.sync="dialogFormVisible" center="">
+<el-dialog title="用户注册" :visible.sync="dialogFormVisible">
   <el-form :model="userRegister"
            :rules="userRegisterRules"
            ref="userRegisterForm">
