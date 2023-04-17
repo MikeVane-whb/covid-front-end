@@ -11,7 +11,7 @@
       <el-table-column prop="stuNumber" label="学号" width="200"/>
       <el-table-column prop="sex" label="性别" width="150" align="center"/>
       <el-table-column prop="gradeClass" label="班级" width="200" align="center"/>
-      <el-table-column prop="address" label="地址" align="center"/>
+      <el-table-column prop="phone" label="电话"/>
     </el-table>
     <div style="padding: 10px 0">
       <el-pagination
@@ -58,7 +58,7 @@ export default {
   },
   methods:{
     load(){
-      request.get(CurrentURL + "/select.do", {
+      request.get(CurrentURL + "/select", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,

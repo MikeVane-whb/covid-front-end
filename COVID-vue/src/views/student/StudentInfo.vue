@@ -136,7 +136,7 @@ export default {
   },
   methods:{
     load(){
-      request.get(CurrentURL + '/select.do').then(res => {
+      request.get(CurrentURL + '/select').then(res => {
         if (res.code === this.getStatusCode('SUCCESS')){
           this.student = res.data
           // 更新 header 的名称显示
@@ -159,13 +159,13 @@ export default {
             confirmButtonText: '添加',
             cancelButtonText: '取消'
           }).then(() => {
-            request.put(CurrentURL + '/update.do', this.student).then(res => {
+            request.put(CurrentURL + '/update', this.student).then(res => {
               if (res.code === this.getStatusCode('SUCCESS')) {
                 this.$message.success("修改成功");
                 this.load();
               }
               else {
-                this.$message.error(res.data)
+                this.$message.error(res.msg)
               }
             })
           }).catch(action => {

@@ -121,7 +121,7 @@ export default {
             confirmButtonText: '确定',
             cancelButtonText: '取消'
           }).then(() => {
-            request.put(CurrentURL + '/updatePassword.do',this.studentPassword).then(res => {
+            request.put(CurrentURL + '/updatePassword',this.studentPassword).then(res => {
               if (res.code === this.getStatusCode('SUCCESS')) {
                 this.$message.success("修改成功");
                 localStorage.clear()
@@ -152,7 +152,7 @@ export default {
             confirmButtonText: '确定',
             cancelButtonText: '取消'
           }).then(() => {
-            request.put(CurrentURL + '/updatePhone.do',this.studentPhone).then(res => {
+            request.put(CurrentURL + '/updatePhone',this.studentPhone).then(res => {
               if (res.code === this.getStatusCode('SUCCESS')) {
                 this.$message.success("修改成功");
                 localStorage.clear()

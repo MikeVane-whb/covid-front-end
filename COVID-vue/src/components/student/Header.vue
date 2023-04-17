@@ -1,11 +1,15 @@
 <template>
-  <div style="font-size: 12px; line-height: 60px; display: flex">
+  <div class="header-div">
     <div style="flex: 1; font-size: 20px">
       <span :class="collapseBtnClass" style="cursor: pointer" @click="collapse"></span>
+      <el-breadcrumb separator="/" style="display: inline-block; margin-left: 10px; font-size: 16px">
+        <el-breadcrumb-item :to="'/student'" style="text-decoration-color: white">首页</el-breadcrumb-item>
+        <el-breadcrumb-item >{{currentPathName}}</el-breadcrumb-item>
+      </el-breadcrumb>
     </div>
 
-    <el-dropdown style="width: 150px; cursor: pointer; text-align: center">
-      <span>{{user.username}}</span><i class="el-icon-arrow-down" style="margin-left: 5px"></i>
+    <el-dropdown style="width: 150px; cursor: pointer; text-align: center;">
+      <span class="name-span">{{user.username}}</span><i class="el-icon-arrow-down" style="margin-left: 5px"></i>
       <el-dropdown-menu slot="dropdown" style="text-align: center" >
         <el-dropdown-item style="width: 100px">
           <router-link class="link-to-info" to="/student/studentInfo">个人信息</router-link>
@@ -26,6 +30,16 @@ export default {
   props:{
     collapseBtnClass:String,
     collapse:Function,
+  },
+  computed:{
+    currentPathName(){
+      return this.$store.state.currentPathName;
+    }
+  },
+  watch:{
+    currentPathName(newVal, oldVal){
+      console.log(newVal)
+    }
   },
   data(){
     return{
@@ -60,5 +74,13 @@ export default {
 }
 .link-to-exit:hover{
   color: #409eff;
+}
+.header-div{
+  font-size: 16px;
+  line-height: 60px;
+  display: flex;
+}
+.name-span{
+  font-size: 16px;
 }
 </style>

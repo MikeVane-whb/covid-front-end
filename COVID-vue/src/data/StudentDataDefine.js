@@ -36,4 +36,52 @@ export const StudentInfo = {
             { required: true, message: '请输入邮箱', trigger: 'blur' },
         ]
     }
+};
+
+export const LeaveSituationInfo = {
+    leaveRecord:{
+        stuNumber:'', //学号
+        username:'', //姓名
+        college:'', //学院
+        type:'', //出入校类型
+        district:'', //外出地区
+        destination:'', //外出详细地点
+        reason:'', //出校理由
+        leaveTime:'', //出校时间
+        remark:'', //备注
+        status:'', //状态
+    },
+    leaveRecordRule:{
+        type: [
+            { required: true, message: '请选择出入校类型', trigger: 'blur' },
+        ],
+        district: [
+            { required: true, message: '请选择地区', trigger: 'blur' },
+        ],
+        destination:[
+            { required:true, message: '请输入外出详细地址', trigger:'blur' }
+        ],
+        reason:[
+            { required:true, message: '请输入外出理由', trigger:'blur' }
+        ],
+        leaveTime:[
+            { required:true, message: '请选择出校时间', trigger:'blur' }
+        ],
+    }
+}
+
+export const StudentClock ={
+    clockForm:{
+        stuNumber: '',
+        username: '',
+        gradeClass:'',
+        address: '',
+        status: '',
+        contactCase: '',
+        travelInfo: '',
+        clockTime:''
+    },
+    clockFormRules:{
+
+    },
 }

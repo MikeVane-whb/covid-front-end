@@ -9,7 +9,7 @@
       router
   >
     <div style="height: 60px; line-height: 60px; text-align: center">
-      <img src="../../assets/logo.png" alt="" style="width: 20px; position: relative; top: 5px; margin-right: 5px" >
+      <img src="../../img/校徽.jpg" alt="" style="width: 20px; position: relative; top: 5px; margin-right: 5px" >
       <b style="color: white" v-show="logoTextShow">疫情管理系统</b>
     </div>
     <el-menu-item index="/student/homePage">
@@ -30,27 +30,37 @@
         </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
+    <el-menu-item index="/student/grade">
+      <template slot="title"><i class="el-icon-copy-document"></i>
+        <span slot="title">班级情况</span>
+      </template>
+    </el-menu-item>
     <el-submenu index="3">
-      <template slot="title"><i class="el-icon-user-solid"></i>
+      <template slot="title"><i class="el-icon-sunset"></i>
         <span slot="title">疫情管理</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="/student/clock"><i class="el-icon-message-solid"></i>
+        <el-menu-item index="/student/clock"><i class="el-icon-edit"></i>
           <span slot="title">疫情打卡</span>
         </el-menu-item>
-        <el-menu-item index="/student/leave"><i class="el-icon-s-promotion"></i>
+        <el-menu-item index="/student/clockSituation"><i class="el-icon-message-solid"></i>
+          <span slot="title">打卡情况</span>
+        </el-menu-item>
+      </el-menu-item-group>
+    </el-submenu>
+    <el-submenu index="4">
+      <template slot="title"><i class="el-icon-s-promotion"></i>
+        <span slot="title">请假管理</span>
+      </template>
+      <el-menu-item-group>
+        <el-menu-item index="/student/leave"><i class="el-icon-edit"></i>
           <span slot="title">申请出校</span>
         </el-menu-item>
-        <el-menu-item index="/student/leaveSituation"><i class="el-icon-s-promotion"></i>
+        <el-menu-item index="/student/leaveSituation"><i class="el-icon-info"></i>
           <span slot="title">申请情况</span>
         </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
-    <el-menu-item index="/student/grade">
-      <template slot="title"><i class="el-icon-s-custom"></i>
-        <span slot="title">班级情况</span>
-      </template>
-    </el-menu-item>
     <el-menu-item index="/student/covidSituation">
       <template slot="title"><i class="el-icon-coin"></i>
         <span slot="title">疫情概况</span>
@@ -79,14 +89,14 @@ export default {
   background-image: linear-gradient(to bottom right,#30cfd0,#330867);
 }
 .el-menu-item:focus{
-  background-image: linear-gradient(to bottom right,#f43b47,#453a94);
+  background-image: linear-gradient(to bottom right,#86306C 70%,#0D498F);
 }
 .el-menu-item-group{
-  background-image: linear-gradient(to bottom right,#13547a,#80d0c7);
+  background-image: linear-gradient(to bottom right,#39225F,#0D498F);
 }
 .el-menu{
   min-height: 100%;
   overflow-x: hidden;
-  background-image: linear-gradient(to bottom right,#13547a,#80d0c7);
+  background-image: linear-gradient(to bottom right,#39225F,#0D498F);
 }
 </style>

@@ -80,7 +80,7 @@ export default {
   },
   methods:{
     load(){
-      request.get(CurrentURL + '/select.do').then(res => {
+      request.get(CurrentURL + '/select').then(res => {
         if (res.code === this.getStatusCode('SUCCESS')){
           this.student = res.data
           localStorage.setItem('student',JSON.stringify(res.data))

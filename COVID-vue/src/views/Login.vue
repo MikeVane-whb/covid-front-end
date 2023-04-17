@@ -187,7 +187,7 @@ export default {
     register(){
         this.$refs['userRegisterForm'].validate((valid) => {
           if (valid) {
-            request.post('user/register.do',this.userRegister).then((res) => {
+            request.post('user/register',this.userRegister).then((res) => {
               if (res.code === this.getStatusCode('SUCCESS')){
                 this.dialogFormVisible = false
                 this.$message.success('注册成功')
@@ -206,7 +206,7 @@ export default {
     login() {
       this.$refs["userForm"].validate((valid) => {
         if (valid) {
-          request.post('/user/login.do',this.user).then((res)=>{
+          request.post('/user/login',this.user).then((res)=>{
             // console.log(res)
             // console.log(res.objectMap)
             if(res.code === this.getStatusCode('SUCCESS')){

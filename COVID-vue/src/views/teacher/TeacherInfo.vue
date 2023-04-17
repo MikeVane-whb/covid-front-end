@@ -55,7 +55,7 @@ export default {
   },
   methods:{
     loadInfo(){
-      request.get(CurrentURL + '/select.do').then(res => {
+      request.get(CurrentURL + '/select').then(res => {
         if (res.code === this.getStatusCode('SUCCESS')){
           this.teacher = res.data
           // 更新 header 的名称显示
@@ -67,7 +67,7 @@ export default {
       })
     },
     updateHandle(){
-      request.put(CurrentURL + '/update.do', this.teacher).then(res => {
+      request.put(CurrentURL + '/update', this.teacher).then(res => {
         if (res.code === this.getStatusCode('SUCCESS')) {
           this.$message.success("修改成功");
           this.loadInfo();

@@ -153,7 +153,7 @@ export default {
       myChart.setOption(this.studentChart)
     },
     load(){
-      request.get(CurrentURL + '/getGrade.do').then(res => {
+      request.get(CurrentURL + '/getGrade').then(res => {
         if (res.code === this.getStatusCode('SUCCESS')){
           this.options = res.data
           // console.log(this.options)
@@ -164,7 +164,7 @@ export default {
       // 清空之前的学生姓名
       this.clockStudentName = ''
       this.notClockStudentName = ''
-      request.get(CurrentURL + '/getStudents.do/' + value).then(res =>{
+      request.get(CurrentURL + '/getStudents/' + value).then(res =>{
         if (res.code === this.getStatusCode('SUCCESS')){
           this.studentList = res.data
           this.solveStudentSummary(res.data)

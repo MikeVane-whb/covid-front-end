@@ -119,7 +119,7 @@ export default {
   methods:{
     // 加载当前老师所管理的学生信息
     load(){
-      request.get(CurrentURL + "/findStuPage.do", {
+      request.get(CurrentURL + "/findStuPage", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
@@ -138,7 +138,7 @@ export default {
 
     // 加载当前老师未管理的学生信息
     loadStudent() {
-      request.get(CurrentURL +"/findOtherStu.do").then(res =>{
+      request.get(CurrentURL +"/findOtherStu").then(res =>{
         if (res.code === this.getStatusCode('SUCCESS')){
           this.options = res.data
         }
@@ -169,7 +169,7 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(() => {
-        request.delete(CurrentURL + "/deleteRelation.do/" + row.id,{
+        request.delete(CurrentURL + "/deleteRelation/" + row.id,{
         }).then(res => {
           if (res.code === this.getStatusCode('SUCCESS')){
             this.$message.success('删除成功')
@@ -212,7 +212,7 @@ export default {
         confirmButtonText: '添加',
         cancelButtonText: '取消'
       }).then(() => {
-        request.post(CurrentURL+"/addRelation.do",this.student).then(res => {
+        request.post(CurrentURL+"/addRelation",this.student).then(res => {
           if(res.code == "200"){
             this.$message({
               type: 'success',
@@ -238,7 +238,7 @@ export default {
 
     // 更新，更新学生信息
     updateStudent(){
-      request.put(CurrentURL + "/updateStudent.do",this.studentForm).then(res =>{
+      request.put(CurrentURL + "/updateStudent",this.studentForm).then(res =>{
         if(res.code == '200'){
           this.$message({
             type: 'success',
@@ -271,7 +271,7 @@ export default {
         if (ids.length == 0){
           this.$message.error('请选择删除的学生对象')
         }
-        request.post(CurrentURL + '/batchDelRelation.do',ids).then(res => {
+        request.post(CurrentURL + '/batchDelRelation',ids).then(res => {
           if (res.code === this.getStatusCode('SUCCESS')){
             this.$message.success('删除成功')
             this.load()
