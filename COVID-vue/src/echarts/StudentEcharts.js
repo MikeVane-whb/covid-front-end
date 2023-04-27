@@ -13,7 +13,7 @@ export const clockSituationOption = {
     },
     series: [
         {
-            name: 'Student Clock',
+            name: '学生打卡情况',
             type: 'pie',
             radius: '50%',
             data: [
@@ -32,40 +32,76 @@ export const clockSituationOption = {
 }
 
 export const studentStatusOption = {
-    title: {
-        text: '学生身体情况',
-        subtext: '',
-        left: 'center'
-    },
-    tooltip: {
-        trigger: 'item'
-    },
-    legend: {
-        orient: 'vertical',
-        left: 'left'
-    },
-    series: [
-        {
-            name: 'Student Status',
-            type: 'pie',
-            radius: '50%',
-            data: [
-                { value: 0, name: '健康' },
-                { value: 0, name: '疑似' },
-                { value: 0, name: '确诊' }
-            ],
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+    statusChart: {
+        title: {
+            text: '学生身体情况',
+            subtext: '',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        color: ['#85ce61', '#ebb563', '#F56C6C', '#a6a9ad'],
+        series: [
+            {
+                name: '学生身体情况',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 0, name: '健康'},
+                    {value: 0, name: '疑似'},
+                    {value: 0, name: '确诊'},
+                    {value: 0, name: '未知'}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
                 }
-            }
-        }
-    ],
-    onclick: function(params) {
-        var message = params.name + ': ' + params.percent + '%';
-        alert(message);
+            },
+
+        ],
+    },
+    touchChart:{
+        title: {
+            text: '学生是否接触疑似或确诊',
+            subtext: '',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left'
+        },
+        color: ['#85ce61', '#ebb563', '#a6a9ad'],
+        series: [
+            {
+                name: '学生是否接触疑似或确诊',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 0, name: '未接触'},
+                    {value: 0, name: '接触过'},
+                    {value: 0, name: '未知'},
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+
+        ],
     }
 }
 

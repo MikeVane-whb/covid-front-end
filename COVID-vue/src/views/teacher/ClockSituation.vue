@@ -2,10 +2,10 @@
   <div>
     <el-select v-model="gradeClass" placeholder="请选择" filterable>
       <el-option
-          v-for="(item,key) in options"
-          :key="item"
-          :label="item"
-          :value="item">
+          v-for="(item,key) in gradeClasses"
+          :key="item.gradeClass"
+          :label="item.gradeClass"
+          :value="item.gradeClass">
       </el-option>
     </el-select>
     <el-button v-model="gradeClass" type="primary" @click="handleGetStudents(gradeClass)" style="margin-left: 10px">查 询</el-button>
@@ -65,7 +65,7 @@ import request from "@/plugins/axios";
 import * as echarts from "echarts";
 import {clockSituationOption} from '../../echarts/StudentEcharts'
 
-const CurrentURL = "/teacher/clock"
+const CurrentURL = "/teacher/covidManage"
 
 export default {
   name: "ClockSituation",
@@ -80,7 +80,7 @@ export default {
   },
   data(){
     return{
-      options: [],
+      gradeClasses: [],
       gradeClass: '',
       studentSummary: [
           {
@@ -98,6 +98,14 @@ export default {
     }
   },
   methods: {
+    load(){
+      request.get(CurrentURL + '/getGrade').then(res => {
+        if (res.code === this.getStatusCode('SUCCESS')){
+          this.gradeClasses = res.data
+          // console.log(this.options)
+        }
+      })
+    },
     // 计算学生打卡情况
     solveStudentSummary(value){
       // console.log(value)
@@ -130,14 +138,7 @@ export default {
       // 在 echarts 实例中设置选项
       myChart.setOption(this.studentChart)
     },
-    load(){
-      request.get(CurrentURL + '/getGrade').then(res => {
-        if (res.code === this.getStatusCode('SUCCESS')){
-          this.options = res.data
-          // console.log(this.options)
-        }
-      })
-    },
+
     handleGetStudents(value){
       // 清空之前的学生姓名
       this.clockStudentName = ''

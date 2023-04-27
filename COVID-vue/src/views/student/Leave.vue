@@ -6,7 +6,7 @@
                :rules="leaveRecordRule"
                :value="leaveRecord.district"
                ref="leaveRecord"
-               label-width="110px">
+               label-width="130px">
         <el-form-item label="学号" prop="stuNumber" size="small"  >
           <el-input v-model="leaveRecord.stuNumber" :disabled="true"></el-input>
         </el-form-item>
@@ -15,6 +15,9 @@
         </el-form-item>
         <el-form-item label="学院" prop="college" size="small"  >
           <el-input v-model="leaveRecord.college" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="班级" prop="gradeClass" size="small"  >
+          <el-input v-model="leaveRecord.gradeClass" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="出入校类型" prop="type" size="small">
           <el-select v-model="leaveRecord.type" size="medium">
@@ -54,19 +57,20 @@
         <el-form-item label="备注" prop="remark" size="small">
           <el-input type="textarea" :rows="2" v-model="leaveRecord.remark" resize="none"></el-input>
         </el-form-item>
-        <el-form-item class="change-info-el-from-item" size="medium">
-          <el-button type="primary" size="medium" @click="insertHandle('leaveRecord')">提交</el-button>
+        <el-form-item class="change-info-el-from-item" size="small">
+          <el-button type="primary" size="4" @click="insertHandle('leaveRecord')">提交</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="leave-img-el-card">
-      <img class="leave-img" src="../../img/leave.png" alt="出行"/>
+      <img class="leave-img" src="../../img/student/leave.png" alt="出行"/>
     </el-card>
     <el-card class="leave-info-el-card">
       <el-descriptions title="请假信息预览" direction="vertical" :column="2" border size="small">
         <el-descriptions-item label="学号">{{leaveRecord.stuNumber}}</el-descriptions-item>
         <el-descriptions-item label="姓名">{{leaveRecord.username}}</el-descriptions-item>
         <el-descriptions-item label="学院">{{leaveRecord.college}}</el-descriptions-item>
+        <el-descriptions-item label="班级">{{leaveRecord.gradeClass}}</el-descriptions-item>
         <el-descriptions-item label="出入校类型">{{leaveRecord.type | formatType}}</el-descriptions-item>
         <el-descriptions-item label="外出地点">{{leaveRecord.district}}</el-descriptions-item>
         <el-descriptions-item label="外出详细地点">{{leaveRecord.destination}}</el-descriptions-item>
@@ -91,6 +95,7 @@ export default {
     this.leaveRecord.stuNumber = student.stuNumber;
     this.leaveRecord.username = student.username;
     this.leaveRecord.college = student.college;
+    this.leaveRecord.gradeClass = student.gradeClass
   },
   filters: {
     formatType(value) {

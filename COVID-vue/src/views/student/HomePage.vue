@@ -2,14 +2,14 @@
   <div class="mainContainer" style="background: #FFFFE0">
     <div class='inform-div'>
       <el-card class="inform-el-card">
-        <h3 style="color: red"><img src="../../img/通知.svg" alt="Bell Icon" style="height: 16px;width: 16px"> 通知:</h3><br/>
+        <h3 style="color: red"><img src="../../img/student/通知.svg" alt="Bell Icon" style="height: 16px;width: 16px"> 通知:</h3><br/>
         <div>
           <span v-for="(item, index) in items" :key="index" style="display: block; margin-top: 5px">{{ item }}<br/></span>
         </div>
       </el-card>
       <el-card class="img-el-card">
-        <img src="../../img/defend_covid.png" alt="Image description" style="height: 100px;width: 200px">
-        <img src="../../img/defend_covid2.png" alt="Image description" style="height: 250px;width: 200px; margin-top: 20px">
+        <img src="../../img/student/defend_covid.png" alt="Image description" style="height: 100px;width: 200px">
+        <img src="../../img/student/defend_covid2.png" alt="Image description" style="height: 250px;width: 200px; margin-top: 20px">
       </el-card>
     </div>
     <div>

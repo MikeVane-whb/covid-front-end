@@ -223,7 +223,7 @@ export default {
                 this.$router.push('/student')
               }
               if (this.user.identity === '老师'){
-                this.$router.push('/teacher/manage')
+                this.$router.push('/teacher')
               }
             }
             else {

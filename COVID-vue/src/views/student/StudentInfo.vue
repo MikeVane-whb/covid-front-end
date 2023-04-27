@@ -15,16 +15,23 @@
               <el-radio label="女" border style="margin-right: 10px; width: 80px"></el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="我的班级" prop="gradeClass" size="small" class="my-form-item" required>
-            <el-input v-model="student.gradeClass"></el-input>
+          <el-form-item label="我的班级" prop="gradeClass" size="small" class="my-form-item" >
+            <el-select v-model="student.gradeClass" placeholder="请选择班级" filterable>
+              <el-option
+                  v-for="(item,key) in grades"
+                  :key="item.gradeClass"
+                  :label="item.gradeClass"
+                  :value="item.gradeClass">
+              </el-option>
+            </el-select>
           </el-form-item>
-          <el-form-item label="我的学号" prop="stuNumber" size="small" class="my-form-item" required>
+          <el-form-item label="我的学号" prop="stuNumber" size="small" class="my-form-item" >
             <el-input v-model="student.stuNumber"></el-input>
           </el-form-item>
-          <el-form-item label="我的民族" prop="nation" size="small" class="my-form-item" required>
+          <el-form-item label="我的民族" prop="nation" size="small" class="my-form-item" >
             <el-input v-model="student.nation"></el-input>
           </el-form-item>
-          <el-form-item label="出生日期" size="small" required class="my-form-item">
+          <el-form-item label="出生日期" size="small"  class="my-form-item">
             <el-col :span="8">
               <el-form-item prop="birthday">
                 <el-date-picker
@@ -38,7 +45,7 @@
               </el-form-item>
             </el-col>
           </el-form-item>
-          <el-form-item label="我的邮箱" prop="email" size="small" class="my-form-item" required>
+          <el-form-item label="我的邮箱" prop="email" size="small" class="my-form-item" >
             <el-input v-model="student.email"></el-input>
           </el-form-item>
           <el-form-item label="我的手机" prop="phone" size="small" class="my-form-item">
@@ -54,20 +61,16 @@
           <el-form-item label="我的账户" prop="id" size="small" class="my-form-item" >
             <el-input v-model="student.id" :disabled="true"></el-input>
           </el-form-item>
-          <el-form-item label="我的姓名" prop="name" size="small" class="my-form-item" >
-            <el-input v-model="student.name" :disabled="true"></el-input>
+          <el-form-item label="我的姓名" prop="username" size="small" class="my-form-item" >
+            <el-input v-model="student.username" :disabled="true"></el-input>
           </el-form-item>
-          <el-form-item label="入学日期" size="small" required>
-            <el-col :span="11">
-              <el-form-item prop="admissionDate">
-                <el-date-picker
-                    type="date"
-                    placeholder="选择日期"
-                    v-model="student.admissionDate"
-                    format="yyyy 年 MM 月 dd 日"
-                    value-format="yyyy-MM-dd">></el-date-picker>
-              </el-form-item>
-            </el-col>
+          <el-form-item label="入学日期" prop="admissionDate" size="small">
+            <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="student.admissionDate"
+                format="yyyy 年 MM 月 dd 日"
+                value-format="yyyy-MM-dd">></el-date-picker>
           </el-form-item>
           <el-form-item label="我的专业" prop="major" size="small" class="my-form-item" >
             <el-input v-model="student.major"></el-input>
@@ -117,6 +120,7 @@ export default {
   name: "StudentInfo",
   created() {
     this.load();
+    this.loadGrade();
   },
   filters: {
     formatDate(value) {
@@ -132,6 +136,7 @@ export default {
     return{
       student:StudentInfo.student,
       studentRule: StudentInfo.studentRule,
+      grades:[],
     };
   },
   methods:{
@@ -147,6 +152,16 @@ export default {
           localStorage.setItem('student',JSON.stringify(res.data))
         }
         else{
+          this.$message.error(res.msg)
+        }
+      })
+    },
+    loadGrade(){
+      request.get(CurrentURL + '/selectGrade').then(res => {
+        if (res.code === this.getStatusCode('SUCCESS')){
+          this.grades = res.data
+        }
+        else {
           this.$message.error(res.msg)
         }
       })

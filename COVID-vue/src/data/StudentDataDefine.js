@@ -43,6 +43,7 @@ export const LeaveSituationInfo = {
         stuNumber:'', //学号
         username:'', //姓名
         college:'', //学院
+        gradeClass:'', //班级
         type:'', //出入校类型
         district:'', //外出地区
         destination:'', //外出详细地点
