@@ -2,11 +2,11 @@
   <div>
     <el-table :data="leaveRecord" border
               :row-class-name="tableRowClassName">
-      <el-table-column prop="username" label="姓名" width="80" align="center"/>
-      <el-table-column prop="status" label="状态" width="100" :formatter="formatStatus" align="center"/>
-      <el-table-column prop="type" label="申请类型" width="100" :formatter="formatType" align="center"/>
-      <el-table-column prop="district" label="外出地区" width="300" align="center"/>
-      <el-table-column prop="destination" label="外出详细地点" width="300" align="center"/>
+      <el-table-column prop="username" label="姓名"  align="center"/>
+      <el-table-column prop="status" label="状态"  :formatter="formatStatus" align="center"/>
+      <el-table-column prop="type" label="申请类型"  :formatter="formatType" align="center"/>
+      <el-table-column prop="district" label="外出地区"  align="center"/>
+      <el-table-column prop="destination" label="外出详细地点"  align="center"/>
       <el-table-column prop="leaveTime" label="出校时间" align="center" :formatter="formatDate"/>
     </el-table>
     <div style="padding: 10px 0">

@@ -26,8 +26,8 @@
       </el-form-item>
       <el-form-item label="出行信息" prop="travelInfo" class="form-item-margin ">
         <el-select v-model="clockForm.travelInfo" placeholder="是否去过疫情高风险地区" class="form-item-width">
-          <el-option label="最近去过" value="0"></el-option>
-          <el-option label="没有去过" value="1"></el-option>
+          <el-option label="没有去过" value="0"></el-option>
+          <el-option label="最近去过" value="1"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="是否接触过疑似或确诊病例" prop="contactCase" class="form-item-margin" >
@@ -89,8 +89,8 @@ export default {
     formatTravelInfo(value) {
       if (!value) return '';
       switch (value){
-        case '0': return '去过疫情高风险地区'
-        case '1': return '没有去过疫情高风险地区'
+        case '0': return '没有去过疫情高风险地区'
+        case '1': return '去过疫情高风险地区'
         default: return ''
       }
     }
